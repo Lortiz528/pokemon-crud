@@ -5,6 +5,7 @@ export const getPokemonByName = (pokemonName) => {
     if (pokemonName.toLowerCase() === allPokemon[index].name.toLowerCase()) {
       return {
         id: index,
+        nickname:"",
         ...allPokemon[index],
       };
     }

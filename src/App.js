@@ -3,6 +3,7 @@ import { getPokemonByName } from './utils/helper';
 import New from './component/New';
 import { Routes, Route, Link } from 'react-router-dom';
 import Pokedex from './component/Pokedex';
+import Show from './component/Show';
 
 class App extends React.Component {
   constructor() {
@@ -20,7 +21,7 @@ class App extends React.Component {
     let foundPokemon = getPokemonByName(chosenPokemon);
     let newPokemon = [...this.state.myPokemon, foundPokemon];
     if (foundPokemon === undefined) {
-      alert('WRONG pokemon');
+      alert('Please enter a valid Pokemon');
     } else {
       this.setState({
         myPokemon: newPokemon,
@@ -38,12 +39,17 @@ class App extends React.Component {
           <br></br>
           <Link to="/new">New</Link>
         </div>
+
         <Routes>
           <Route
             path="/"
             element={<Pokedex myPokemon={this.state.myPokemon} />}
           />
           <Route path="/new" element={<New addPokemon={this.addPokemon} />} />
+          <Route
+            path="/pokemon/:id"
+            element={<Show myPokemon={this.state.myPokemon} />}
+          />
         </Routes>
       </div>
     );
